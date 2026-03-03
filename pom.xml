@@ -68,6 +68,11 @@
             <version>2.2.43</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.sathwikhbhat</groupId>
+            <artifactId>api-execution-tracker</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

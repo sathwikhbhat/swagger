@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.databaes.civilens.scheme.model.Scheme;
 
+import io.github.sathwikhbhat.apiexecutiontracker.annotation.TrackExecutionTime;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -23,6 +24,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 /*
 This endpoint is temporarily created to get an idea on how the JSON would look like. It will be removed soon and replaced with the necessary end points.
  */
+@TrackExecutionTime
 @RestController
 @RequestMapping("/scheme")
 @Tag(name = "Scheme Management", description = "APIs for managing scheme data. NOTE THAT THIS IS A TEMPORARY END POINT. IT WILL BE REMOVED SOON")
