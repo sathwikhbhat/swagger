@@ -1,0 +1,10 @@
+package com.databaes.civilens.common.enums.core;
+
+public enum IncomeBracket {
+    ANY,
+    ZERO_TO_1L,
+    ONE_TO_3L,
+    THREE_TO_5L,
+    FIVE_L_PLUS,
+    NONE
+}

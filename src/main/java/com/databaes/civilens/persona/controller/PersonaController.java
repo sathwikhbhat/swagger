@@ -1,15 +1,5 @@
 package com.databaes.civilens.persona.controller;
 
-import com.databaes.civilens.persona.model.Persona;
-import com.databaes.civilens.persona.service.PersonaService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,26 +8,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.databaes.civilens.persona.model.Persona;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/persona")
 @Tag(name = "Persona Management", description = "APIs for managing persona data")
 public class PersonaController {
 
-    private final PersonaService personaServiceImpl;
-
-    public PersonaController(PersonaService personaServiceImpl) {
-        this.personaServiceImpl = personaServiceImpl;
-    }
-
     @PostMapping
     @Operation(summary = "Create a new persona", description = "Creates a new persona with demographic, economic, geographic, and occupation information")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Persona created successfully", content = @Content),
-            @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content)
+        @ApiResponse(responseCode = "201", description = "Persona created successfully", content = @Content),
+        @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content)
     })
     public ResponseEntity<Void> createPersona(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Persona object to be created", required = true, content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Persona.class), examples = {
-                    @ExampleObject(name = "Farmer Persona", value = """
+        @ExampleObject(name = "Farmer Persona", value = """
                             {
                                 "language": "EN",
                                 "demographics": {
@@ -51,7 +45,7 @@ public class PersonaController {
                                     "bplStatus": false
                                 },
                                 "geographic": {
-                                    "state": "Karnataka",
+                                    "state": "KARNATAKA",
                                     "district": "Bangalore",
                                     "areaType": "RURAL"
                                 },
@@ -68,7 +62,7 @@ public class PersonaController {
                                 }
                             }
                             """),
-                    @ExampleObject(name = "Student Persona", value = """
+        @ExampleObject(name = "Student Persona", value = """
                             {
                                 "language": "HI",
                                 "demographics": {
@@ -82,7 +76,7 @@ public class PersonaController {
                                     "bplStatus": true
                                 },
                                 "geographic": {
-                                    "state": "Maharashtra",
+                                    "state": "MAHARASHTRA",
                                     "district": "Pune",
                                     "areaType": "URBAN"
                                 },
@@ -96,7 +90,7 @@ public class PersonaController {
                                 }
                             }
                             """),
-                    @ExampleObject(name = "Worker Persona", value = """
+        @ExampleObject(name = "Worker Persona", value = """
                             {
                                 "language": "KN",
                                 "demographics": {
@@ -110,7 +104,7 @@ public class PersonaController {
                                     "bplStatus": false
                                 },
                                 "geographic": {
-                                    "state": "Tamil Nadu",
+                                    "state": "TAMIL_NADU",
                                     "district": "Chennai",
                                     "areaType": "URBAN"
                                 },
@@ -124,7 +118,7 @@ public class PersonaController {
                                 }
                             }
                             """),
-                    @ExampleObject(name = "Self-Employed Persona", value = """
+        @ExampleObject(name = "Self-Employed Persona", value = """
                             {
                                 "language": "EN",
                                 "demographics": {
@@ -138,7 +132,7 @@ public class PersonaController {
                                     "bplStatus": false
                                 },
                                 "geographic": {
-                                    "state": "Gujarat",
+                                    "state": "GUJARAT",
                                     "district": "Ahmedabad",
                                     "areaType": "URBAN"
                                 },
@@ -153,8 +147,7 @@ public class PersonaController {
                                 }
                             }
                             """)
-            })) @Valid @RequestBody Persona persona) {
-        personaServiceImpl.createPersona(persona);
+    })) @RequestBody Persona persona) {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

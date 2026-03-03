@@ -1,31 +1,16 @@
 version: "3.8"
 
 services:
-  mongodb:
-    image: mongo:latest
-    container_name: civilens-mongodb
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-    networks:
-      - civilens-network
-
   app:
     build: .
     container_name: civilens-app
     ports:
       - "8080:8080"
     environment:
-      - SPRING_MONGODB_URI=mongodb://mongodb:27017/civilens
-    depends_on:
-      - mongodb
+      - APP_SERVER_URL=https://swagger-8fzm.onrender.com
     networks:
       - civilens-network
 
 networks:
   civilens-network:
     driver: bridge
-
-volumes:
-  mongodb_data:
